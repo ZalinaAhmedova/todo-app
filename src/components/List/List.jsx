@@ -1,18 +1,18 @@
 import React from "react";
-import "./list.css";
-import Item from "./Item";
+import "./List.css";
+import Item from "../Item/Item";
 
 function List({ todos, removeTodo }) {
   return (
     <ul className="taskList">
-      {todos.map((todo, i) => {
+      {todos.map((todo) => {
         return (
-          <Item task={todo.text} key={i}>
+          <Item task={todo.text} key={todo.id}>
             <button className="button" onClick={() => removeTodo(todo.id)}>
               Delete
             </button>
           </Item>
-        );
+        )
       })}
     </ul>
   );

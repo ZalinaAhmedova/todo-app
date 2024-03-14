@@ -1,19 +1,18 @@
 import React, { useState } from "react";
-import "./form.css";
+import "./Form.css";
 
-function Form({addTodos}) {
+function Form({ addTodos }) {
   const [value, setValue] = useState("");
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    addTodos(value);
+    setValue("");
+  };
 
   return (
     <div className="form container">
-      <form
-        className="form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          addTodos(value);
-          setValue("");
-        }}
-      >
+      <form className="form" onSubmit={(e) => handleFormSubmit(e)}>
         <input
           type="text"
           placeholder="Add your new todo"
@@ -21,10 +20,7 @@ function Form({addTodos}) {
           onChange={(e) => setValue(e.target.value)}
         ></input>
       </form>
-      <button
-        className="form button"
-        onClick={() => addTodos(value)}
-      >
+      <button className="form button" onClick={() => addTodos(value)}>
         Add
       </button>
     </div>
