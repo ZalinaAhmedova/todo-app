@@ -1,0 +1,14 @@
+.task-list--item {
+  display: grid;
+  grid-template-columns: 320px 74px;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.task-list--item--text {
+  word-wrap: break-word;
+  margin: 0;
+  border-radius: 5px;
+  background-color: #e8e3e3;
+  padding: 8px 12px;
+}

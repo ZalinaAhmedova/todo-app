@@ -8,19 +8,27 @@ function Form({ addTodos }) {
     e.preventDefault();
     addTodos(value);
     setValue("");
+    e.target.reset();
   };
 
   return (
-    <div className="form container">
-      <form className="form" onSubmit={(e) => handleFormSubmit(e)}>
+    <div className="form-container">
+      <form onSubmit={(e) => handleFormSubmit(e)}>
         <input
           type="text"
           placeholder="Add your new todo"
-          className="input"
+          className="form-input"
+          id="textInput"
           onChange={(e) => setValue(e.target.value)}
         ></input>
       </form>
-      <button className="form button" onClick={() => addTodos(value)}>
+      <button
+        className="form-button"
+        onClick={() => {
+          addTodos(value);
+          document.getElementById("textInput").value = "";
+        }}
+      >
         Add
       </button>
     </div>

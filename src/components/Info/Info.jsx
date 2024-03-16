@@ -4,8 +4,8 @@ import "./Info.css";
 function Info({removeAllTodo, todosCount}) {
   return (
     <div className="info">
-      <p>You have {todosCount} pending tasks</p>
-      <button className="button" onClick={removeAllTodo}>
+      <p className="info--text">You have {todosCount} pending tasks</p>
+      <button className="info--button" onClick={removeAllTodo}>
         Clear All
       </button>
     </div>

@@ -4,11 +4,11 @@ import Item from "../Item/Item";
 
 function List({ todos, removeTodo }) {
   return (
-    <ul className="taskList">
+    <ul className="task-list">
       {todos.map((todo) => {
         return (
           <Item task={todo.text} key={todo.id}>
-            <button className="button" onClick={() => removeTodo(todo.id)}>
+            <button className="task-list--item--button" onClick={() => removeTodo(todo.id)}>
               Delete
             </button>
           </Item>

@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className='container'>
-      <h1>Todo App</h1>
+      <h1 className="title">Todo App</h1>
       <Form addTodos={handleAddTodo}/>
       <List todos={todos} removeTodo={handleRemoveTodo}/>
       <Info removeAllTodo={handleRemoveAllTodo} todosCount={allTodos}/>

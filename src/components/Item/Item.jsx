@@ -3,7 +3,7 @@ import './Item.css'
 
 function Item({task, children}) {
   return (
-    <li className="task"><p>{task}</p> {children}</li>
+    <li className="task-list--item"><p className="task-list--item--text">{task}</p> {children}</li>
   )
 }
 
