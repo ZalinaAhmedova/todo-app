@@ -15,6 +15,8 @@ function App() {
     }
   }
   
+  console.log(todos);
+
   const handleRemoveTodo = (id) => {
     setTodos(todos.filter(todo => {
       if (todo.id !== id) {

@@ -18,3 +18,14 @@
   background: #050505;
   color: #ffffff;
 }
+
+.alert {
+  margin: 0;
+  margin-top: 10px;
+  color: red;
+}
+
+.alert::before {
+  display: inline;
+  content: "⚠ ";
+}

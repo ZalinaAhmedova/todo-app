@@ -5,11 +5,11 @@ function Form({ addTodos }) {
 
   const {
     register,
-    formState: { errors },
     handleSubmit,
     reset,
+    formState: { errors, isValid },
   } = useForm({
-    mode: "onChange"
+    mode: "onBlur"
   });
 
   const onSubmit = (data) => {
@@ -25,7 +25,8 @@ function Form({ addTodos }) {
         >
         <input
           {...register("task", {
-            required: true
+            required: true,
+            pattern: /[A-Za-z0-9]$/i,
           })}
           type="text"
           placeholder="Add your new todo"
@@ -36,7 +37,10 @@ function Form({ addTodos }) {
           type="submit" 
           className="form-button" 
           value="Add"
+          disabled={!isValid}
         ></input>
+        {errors.task?.type === "required" && (<p className="alert" role="alert">This field is required</p>)}
+        {errors.task?.type === "pattern" && (<p className="alert" role="alert">This field is required</p>)}
       </form>
     </div>
   );
