@@ -1,36 +1,43 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import "./Form.css";
 
 function Form({ addTodos }) {
-  const [value, setValue] = useState("");
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    addTodos(value);
-    setValue("");
-    e.target.reset();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm({
+    mode: "onChange"
+  });
+
+  const onSubmit = (data) => {
+    addTodos(data.task);
+    reset();
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={(e) => handleFormSubmit(e)}>
+    <div>
+      <form 
+        onSubmit={handleSubmit(onSubmit)} 
+        className="form-container"
+        >
         <input
+          {...register("task", {
+            required: true
+          })}
           type="text"
           placeholder="Add your new todo"
           className="form-input"
           id="textInput"
-          onChange={(e) => setValue(e.target.value)}
+        ></input>
+        <input 
+          type="submit" 
+          className="form-button" 
+          value="Add"
         ></input>
       </form>
-      <button
-        className="form-button"
-        onClick={() => {
-          addTodos(value);
-          document.getElementById("textInput").value = "";
-        }}
-      >
-        Add
-      </button>
     </div>
   );
 }
