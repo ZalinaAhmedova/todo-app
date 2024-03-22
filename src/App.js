@@ -1,34 +1,28 @@
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addTodo, removeTodo, removeAllTodo } from './features/todoSlice.js';
 import './App.css';
 import Form from './components/Form/Form.jsx'
 import List from './components/List/List.jsx'
 import Info from './components/Info/Info.jsx';
 
 function App() {
-  const [todos, setTodos] = useState([]);
-  const [allTodos, setAllTodos] = useState(0);
+  const todos = useSelector((state) => state.todo.todos)
+  const count = useSelector((state) => state.todo.count)
+
+  const dispatch = useDispatch();
 
   const handleAddTodo = (value) => {
     if (value) {
-      setTodos([...todos, {text: value, done: false, id: Math.random().toString(36).substring(2)}]);
-      setAllTodos(allTodos + 1);
+      dispatch(addTodo(value));
     }
   }
-  
-  console.log(todos);
 
   const handleRemoveTodo = (id) => {
-    setTodos(todos.filter(todo => {
-      if (todo.id !== id) {
-        return todo;
-      }
-    }));
-    setAllTodos(allTodos - 1);
+    dispatch(removeTodo(id));
   }
 
   const handleRemoveAllTodo = () => {
-    setTodos([]);
-    setAllTodos(0);
+    dispatch(removeAllTodo());
   }
 
   return (
@@ -36,7 +30,7 @@ function App() {
       <h1 className="title">Todo App</h1>
       <Form addTodos={handleAddTodo}/>
       <List todos={todos} removeTodo={handleRemoveTodo}/>
-      <Info removeAllTodo={handleRemoveAllTodo} todosCount={allTodos}/>
+      <Info removeAllTodo={handleRemoveAllTodo} todosCount={count}/>
     </div>
   );
 }

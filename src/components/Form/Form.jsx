@@ -9,7 +9,7 @@ function Form({ addTodos }) {
     reset,
     formState: { errors, isValid },
   } = useForm({
-    mode: "onBlur"
+    mode: "onChange"
   });
 
   const onSubmit = (data) => {
@@ -26,7 +26,7 @@ function Form({ addTodos }) {
         <input
           {...register("task", {
             required: true,
-            pattern: /[A-Za-z0-9]$/i,
+            pattern: /[А-яA-Za-z0-9]$/i,
           })}
           type="text"
           placeholder="Add your new todo"
