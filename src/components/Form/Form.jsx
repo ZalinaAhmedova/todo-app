@@ -26,7 +26,7 @@ function Form({ addTodos }) {
         <input
           {...register("task", {
             required: true,
-            pattern: /[А-яA-Za-z0-9]$/i,
+            pattern: /[А-яA-Z0-9]$/i,
           })}
           type="text"
           placeholder="Add your new todo"
